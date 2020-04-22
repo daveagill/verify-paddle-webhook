@@ -1,5 +1,9 @@
 # Verify your Paddle.com Webhooks
 
+![Travis (.com)](https://img.shields.io/travis/com/daveagill/verify-paddle-webhook?style=flat-square)
+![npm](https://img.shields.io/npm/v/verify-paddle-webhook?style=flat-square)
+![GitHub](https://img.shields.io/github/license/daveagill/verify-paddle-webhook?style=flat-square)
+
 Secure your webhooks with ease by validating whether they were really sent by Paddle.com.
 
 > __Important:__ You will need your public key from your Paddle account. [Find your public key.](https://vendors.paddle.com/public-key)
