@@ -1,0 +1,38 @@
+{
+    "name": "verify-paddle-webhook",
+    "version": "1.0.0",
+    "license": "MIT",
+    "description": "Verify the signature of Paddle.com webhook payloads. Use this to confirm authenticity and secure your webhook handlers.",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/daveagill/verify-paddle-webhook.git"
+    },
+    "homepage": "https://github.com/daveagill/verify-paddle-webhook#readme",
+    "bugs": "https://github.com/daveagill/verify-paddle-webhook/issues",
+    "author": {
+        "name": "David Gill",
+        "url": "https://davegill.dev"
+    },
+    "keywords": [
+        "Paddle",
+        "Paddle.com",
+        "webhook",
+        "verify",
+        "verifier",
+        "validate",
+        "p_signature"
+    ],
+    "engines": {
+        "node": ">=8.3.0"
+    },
+    "main": "index.js",
+    "scripts": {
+        "test": "jest"
+    },
+    "dependencies": {
+        "php-serialize": "^4.0.2"
+    },
+    "devDependencies": {
+        "jest": "^25.4.0"
+    }
+}
