@@ -1,8 +1,8 @@
 # Verify your Paddle.com Webhooks
 
-![Travis (.com)](https://img.shields.io/travis/com/daveagill/verify-paddle-webhook?style=flat-square)
-![npm](https://img.shields.io/npm/v/verify-paddle-webhook?style=flat-square)
-![GitHub](https://img.shields.io/github/license/daveagill/verify-paddle-webhook?style=flat-square)
+[![Travis (.com)](https://img.shields.io/travis/com/daveagill/verify-paddle-webhook?style=flat-square)](https://travis-ci.com/daveagill/verify-paddle-webhook)
+[![npm](https://img.shields.io/npm/v/verify-paddle-webhook?style=flat-square)](https://www.npmjs.com/package/verify-paddle-webhook)
+[![GitHub](https://img.shields.io/github/license/daveagill/verify-paddle-webhook?style=flat-square)](https://github.com/daveagill/verify-paddle-webhook/blob/master/LICENSE)
 
 Secure your webhooks with ease by validating whether they were really sent by Paddle.com.
 
