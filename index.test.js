@@ -96,7 +96,7 @@ describe.each([
     [ 'p_signature is null'       , pair1        , nullPair     , false ],
 
 ])('verifyPaddleWebhook', (when, {publicKey}, {privateSignature}, expected) => {
-    test(`should return ${expected} when ${when}`, () => {
+    it(`should return ${expected} when ${when}`, () => {
         const signedPayload = {
             ...payload,
             p_signature: privateSignature
@@ -108,12 +108,40 @@ describe.each([
 });
 
 describe('verifyPaddleWebhook', () => {
-    test(`should return false for null arguments`, () => {
+    it('should return false when payload is tampered with', () => {
+        const {publicKey, privateSignature} = pair1;
+        
+        const tamperedPayload = {
+            ...payload,
+            p_signature: privateSignature,
+            subscription_id: 2 // <-- tamper with subscription id
+        };
+
+        const result = verifyPaddleWebhook(publicKey, tamperedPayload);
+        expect(result).toBe(false);
+    });
+
+    it('should return false when payload is malformed', () => {
+        const {publicKey} = pair1;
+        
+        const malformedPayload1 = { a: 'a', b: 'b' };
+        const malformedPayload2 = [1, 2];
+        const malformedPayload3 = 'whoops';
+
+        const result1 = verifyPaddleWebhook(publicKey, malformedPayload1);
+        const result2 = verifyPaddleWebhook(publicKey, malformedPayload2);
+        const result3 = verifyPaddleWebhook(publicKey, malformedPayload3);
+        expect(result1).toBe(false);
+        expect(result2).toBe(false);
+        expect(result3).toBe(false);
+    });
+
+    it(`should return false for null arguments`, () => {
         const result = verifyPaddleWebhook(null, null);
         expect(result).toBe(false);
     });
 
-    test(`should return false for undefined arguments`, () => {
+    it(`should return false for undefined arguments`, () => {
         const result = verifyPaddleWebhook();
         expect(result).toBe(false);
     });
