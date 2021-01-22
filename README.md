@@ -64,28 +64,6 @@ app.listen(80);
 ```
 ---
 
-### Example: AWS Lambda function
-Note: This assumes the Lambda function is invoked through AWS API Gateway using proxy integration ([see tutorial](https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-create-api-as-simple-proxy-for-lambda.html)).
-
-```js
-const {verifyPaddleWebhook} = require('verify-paddle-webhook');
-
-const PUBLIC_KEY =
-`-----BEGIN PUBLIC KEY-----
-Your public key here
------END PUBLIC KEY-----`;
-
-exports.handler = async function(event, context) {
-    if (verifyPaddleWebhook(PUBLIC_KEY, event.queryStringParameters)) {
-        console.log('Webhook is valid!');
-        // process the webhook
-    }
-
-    return {"statusCode": 200, "body": "OK"};
-}
-```
----
-
 ### Example: Using Node.js to parse the request body:
 Paddle actually sends the payload in the body of a POST request formatted as a URL-encoded query string:
 ```
@@ -109,5 +87,33 @@ function process(body) {
         console.log('Webhook is valid!');
         // process the webhook
     }
+}
+```
+---
+
+### Example: AWS Lambda function / Netlify function (Node.js)
+This example works for AWS Lambda and Netlify.
+
+Note: For AWS Lambda this assumes the Lambda function is invoked through AWS API Gateway using proxy integration ([see tutorial](https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-create-api-as-simple-proxy-for-lambda.html)).
+
+For more detail see the [Node.js example](#example-using-node.js-to-parse-the-request-body).
+
+```js
+const querystring = require('querystring');
+const {verifyPaddleWebhook} = require('verify-paddle-webhook');
+
+const PUBLIC_KEY =
+`-----BEGIN PUBLIC KEY-----
+Your public key here
+-----END PUBLIC KEY-----`;
+
+exports.handler = async function(event, context) {
+    const webhookData = querystring.parse(event.body);
+    if (verifyPaddleWebhook(PUBLIC_KEY, webhookData)) {
+        console.log('Webhook is valid!');
+        // process the webhook
+    }
+
+    return {"statusCode": 200, "body": "OK"};
 }
 ```
