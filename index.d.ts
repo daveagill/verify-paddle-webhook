@@ -1,4 +1,4 @@
 export declare function verifyPaddleWebhook(
     publicKey: string,
-    webhookData: Readonly<Record<string, string | string[] | undefined>>,
+    webhookData: Readonly<Record<string, { toString(): string } | undefined | null>>,
 ): boolean;
